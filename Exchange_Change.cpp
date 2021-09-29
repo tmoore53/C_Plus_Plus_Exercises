@@ -3,10 +3,10 @@ using namespace std;
 
 int main()
 {
-    float x = .15;
+    float x = .41;
 
     float nickel = .05;
-    float dime = .1;
+    float dime = .10;
     float quarter = .25;
     float penny = .01;
 
@@ -24,37 +24,53 @@ int main()
 
     int coins = 0;
 
-    while (x >= penny)
+    while (x >= 0)
     {
         cout << "Current amount of coins: " << coins << endl;
 
         while (x >= quarter)
         {
-
             x -= .25;
             coins = coins + 1;
-            cout << "Current amount of coins: " << coins << " Quarter" << endl;
+            cout << "Current amount of coins: 1 Quarter | "
+                 << "Current amount of coins: " << coins << " X = " << x << endl;
         }
         while (x >= dime)
         {
             x -= .10;
             coins = coins + 1;
-            cout << "Current amount of coins: " << coins << " Dime" << endl;
+            cout << "Current amount of coins: 1 Dime | "
+                 << "Current amount of coins: " << coins << " X = " << x << endl;
         }
         while (x >= nickel)
         {
-            x -= .5;
+            x -= .05;
             coins = coins + 1;
-            cout << "Current amount of coins: " << coins << " Nickel" << endl;
+            cout << "Current amount of coins: 1 Nickel | "
+                 << "Current amount of coins: " << coins << " X = " << x << endl;
         }
-        //Does not pickup this statement
-        while (x >= penny)
+
+        while (x >= 0)
         {
             coins = coins + 1;
             x -= .01;
 
-            cout << "Current amount of coins: " << coins << " Penny" << endl;
+            cout << "Current amount of coins: 1 Penny | "
+                 << "Current amount of coins: " << coins << " X = " << x << endl;
         }
+        cout << "Final output of coins: " << coins << " X = " << x << endl;
     }
-    cout << "Final output of coins: " << coins << endl;
+
+    //TODO: Why does x -= .01 return -4.88013e-09
+    // double testf = .1;
+    // double testa = .1 - .1;
+
+    // while (testf > -.5)
+    // {
+    //     testf -= .01;
+    //     cout << testf << endl;
+    // }
+    // cout << testa << endl;
+
+    cout << "Final output of coins: " << coins << " X = " << x << endl;
 }
