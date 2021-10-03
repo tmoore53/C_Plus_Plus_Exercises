@@ -9,7 +9,7 @@ int main()
 
     cin >> age;
 
-    cout << "That is " << 365 * age << " days.";
+    cout << "That is " << 365 * age << " days." << endl;
 
     //return 0;
 }
