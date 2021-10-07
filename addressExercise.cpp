@@ -49,7 +49,7 @@ public:
 
 GlobalFunction firstGF;
 
-int main()
+void addressExercise()
 {
 
     int number = 3;
@@ -63,7 +63,6 @@ int main()
     cout << *np << endl;
 
     cout << "Test" << endl;
-    return 0;
 }
 
 void TestArray()
@@ -73,6 +72,5 @@ void TestArray()
     for (int i(0); i < 10; i++)
     {
         cout << nums[i] << endl;
-        /* code */
     }
 }
