@@ -11,7 +11,7 @@
 #include <iostream>
 
 // constructor with default name
-explicit Library::Library(const string &Name) : LibraryName{Name}, NumberOfBooks{0}
+Library::Library(const string &Name) : LibraryName{Name}, NumberOfBooks{0}
 {
 }
 
@@ -125,3 +125,15 @@ ostream &operator<<(ostream &Out, const Library &Lib)
 {
     return Out << Lib.LibraryName;
 }
+
+//Operator == is overridden to check if Libraries are equal
+bool Library::operator==(const Library &Other)
+{
+
+    for (int i{0}; i < NumberOfBooks; i++)
+    {
+        if (!compareString(this->LibraryInv[i], Other.LibraryInv[i]))
+            return false;
+    }
+    return true;
+};

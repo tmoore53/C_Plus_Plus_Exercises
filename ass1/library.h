@@ -42,6 +42,9 @@ public:
     // true if book found in library
     bool isInLibrary(const string &BookName) const;
 
+    //Check if Libraries are equal
+    bool operator==(const Library &Other);
+
 private:
     //Helper method to compare strings to each other
     bool compareString(const string &str1, const string &str2) const;
