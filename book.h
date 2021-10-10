@@ -1,40 +1,43 @@
+// #ifndef BOOK_
+// #define BOOK_
+#include <iostream>
 using namespace std;
-#ifndef BOOK_
-#define BOOK_
+
 class Book
 {
 private:
-    string _title;
-    string _author;
-    int _pages;
-    string _genre;
-    int _currentPage;
+    string Title;
+    string Author;
+    //int Pages;
+    // string _genre;
 
 public:
-    Book(string title, string author, int pages, string genre);
-
-    /* Interfaces of a Book*/
+    Book(const string title, const string author); //,int Pages); //, string _genre);
 
     //Return title of the Book
     string getTitle() const;
 
-    //Return Author of the Book
+    //     //Return Author of the Book
     string getAuthor() const;
-
-    //Return page number of the Book
-    int getPages() const;
-
-    //Return the genre of the Book
-    string getGenre() const;
-
-    //return the current page number
-    int getCurrentPage();
-
-    //Turn the page of the Book forward one page
-    bool turnPageFWD();
-
-    //Turn back a page
-    bool turnPageBCK();
 };
 
-#endif
+//#endif
+
+/* Interfaces of a Book*/
+
+//Getter methods should have cont in the method header
+
+//     //Return page number of the Book
+//     int getPages();
+
+//     //Return the genre of the Book
+//     string getGenre();
+
+//     //return the current page number
+//     int getCurrentPage();
+
+//     //Turn the page of the Book forward one page
+//     bool turnPageFWD();
+
+//     //Turn back a page
+//     bool turnPageBCK();

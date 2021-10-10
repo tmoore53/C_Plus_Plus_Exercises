@@ -1,61 +1,48 @@
-#include <IOstream>
 #include "book.h"
+#include <iostream>
 using namespace std;
 
 // Constructor:
-Book::Book(string title, string author, int pages, string genre)
+Book::Book(const string title, const string author) : Title{title}, Author{author} //, int pages) //, string genre)
 {
-    _title = title;
-    _author = author;
-    _pages = pages;
-    _genre = genre;
 }
-
-//Return title of the Book
+// //Return title of the Book
 string Book::getTitle() const
 {
-    return _title;
+    return this->Title;
 }
 
-//Return Author of the Book
+// //Return Author of the Book
 string Book::getAuthor() const
 {
-    return _author;
+    return this->Author;
 }
 
-//Return page number of the Book
-int Book::getPages() const
-{
-    return _pages;
-}
-
-//Return the genre of the Book
-string Book::getGenre() const
-{
-    return _genre;
-}
-
-//Turn the page of the Book forward one page
-bool Book::turnPageFWD()
-{
-    return false;
-}
-
-//Turn back a page
-bool Book::turnPageBCK()
-{
-    return false;
-}
-
-int Book::getCurrentPage()
-{
-    return _currentPage;
-}
-// int main()
+// //Return page number of the Book
+// int Book::getPages()
 // {
-//     Book b1 = Book("Software Engineering", "Ian Sommerville", 796, "Textbook");
+//     return _pages;
+// }
 
-//     cout << b1.getTitle() << " " << b1.getAuthor() << endl;
+// //Return the genre of the Book
+// string Book::getGenre()
+// {
+//     return _genre;
+// }
 
-//     return 0;
+// //Turn the page of the Book forward one page
+// bool Book::turnPageFWD()
+// {
+//     return false;
+// }
+
+// //Turn back a page
+// bool Book::turnPageBCK()
+// {
+//     return false;
+// }
+
+// int Book::getCurrentPage()
+// {
+//     return _currentPage;
 // }
