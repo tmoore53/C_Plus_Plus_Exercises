@@ -19,6 +19,13 @@ void test1()
     Libs.addBook("The Odyssey");
     Libs.listAllBooks();
 
+    Library Libs2("UWB2");
+    Libs2.addBook("Don Quixote");
+    Libs2.addBook("In Search of Lost Time");
+    Libs2.addBook("Ulysses");
+    Libs2.addBook("The Odyssey");
+    Libs2.listAllBooks();
+
     // should generate already in library message and return true
     bool Result = Libs.isInLibrary("The Odyssey");
     assert(Result);
@@ -43,6 +50,12 @@ void test1()
 
     //Displays Library name
     cout << "Library name: " << Libs << endl;
+
+    // cannot remove twice, result should be false
+    Result = Libs == Libs2;
+    assert(Result);
+
+    cout << Libs2 << " & " << Libs << " are equal!" << endl;
 }
 
 //Runs all tests prompts user of successfully passing all tests
