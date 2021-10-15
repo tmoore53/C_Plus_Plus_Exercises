@@ -11,5 +11,5 @@ int main()
 
     cout << "That is " << 365 * age << " days." << endl;
 
-    //return 0;
+    return 0;
 }
