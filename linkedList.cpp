@@ -3,7 +3,7 @@
 using namespace std;
 
 template <class datatype>
-Node<datatype>::Node(datatype item) : Item{item} {};
+Node<datatype>::Node(datatype item) : Item{item}, Next{nullptr} {};
 
 template <class datatype>
 datatype Node<datatype>::getItem() const
@@ -28,10 +28,12 @@ LinkedList<datatype>::LinkedList(LinkedList<datatype> &copyList)
 {
 }
 
-template <class datatype>
-LinkedList<datatype>::~LinkedList()
-{
-}
+// template <class datatype>
+// LinkedList<datatype>::~LinkedList()
+// {
+//     delete Head;
+//     Head = nullptr;
+// }
 
 template <class datatype>
 bool LinkedList<datatype>::add(datatype &item)
@@ -48,9 +50,7 @@ bool LinkedList<datatype>::remove()
 template <class T>
 std::ostream &operator<<(std::ostream &out, const LinkedList<T> &n)
 {
-    if (n.Head == nullptr)
-        return out << "Did not work" << endl;
-    return out << "[" << n.Head->getItem() << "]" << endl;
-}
+    Node<T> *curr = n.Head;
 
-//template class LinkedList<string>;
+    return out << "[" << curr->getItem() << "]" << endl;
+}

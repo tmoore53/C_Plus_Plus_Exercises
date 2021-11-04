@@ -12,6 +12,7 @@ public:
     Node();
     Node(datatype item);
     Node(datatype item, Node<datatype> *next);
+    //~Node();
 
     datatype getItem() const;
     Node<datatype> *getNext() const;
@@ -34,7 +35,7 @@ public:
     LinkedList();
     LinkedList(datatype &item);
     LinkedList(LinkedList<datatype> &copyList);
-    ~LinkedList();
+    //~LinkedList();
 
     template <class T>
     friend std::ostream &operator<<(std::ostream &out, const LinkedList<T> &n);
