@@ -1,9 +1,13 @@
+#ifndef LinkedList_H
+#define LinkedList_H
+
 #include <iostream>
 using namespace std;
 
 template <class datatype>
-class Node
+struct Node
 {
+
 public:
     Node();
     Node(datatype item);
@@ -13,9 +17,8 @@ public:
     Node<datatype> *getNext() const;
 
     void setItem(const datatype item);
-    void setNext(const Node<datatype> *next);
 
-    friend ostream &operator<<(ostream &out, const Node &n);
+    void setNext(const Node<datatype> *next);
 
 private:
     datatype Item;
@@ -25,6 +28,21 @@ private:
 template <class datatype>
 class LinkedList
 {
+
 public:
+    //Constructors
+    LinkedList();
+    LinkedList(datatype &item);
+    LinkedList(LinkedList<datatype> &copyList);
+    ~LinkedList();
+
+    template <class T>
+    friend std::ostream &operator<<(std::ostream &out, const LinkedList<T> &n);
+
+    bool add(datatype &item);
+    bool remove();
+
 private:
+    Node<datatype> *Head;
 };
+#endif
