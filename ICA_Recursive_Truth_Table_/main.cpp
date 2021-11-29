@@ -22,6 +22,13 @@ void truthTable(int numberOfPropostions, const string &sofar = "")
 
 int main()
 {
+    truthTable(1);
+    cout << endl;
+
+    truthTable(2);
+    cout << endl;
+
     truthTable(3);
+
     return 0;
 }
