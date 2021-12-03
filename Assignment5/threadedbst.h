@@ -20,6 +20,8 @@ private:
     int data{0};
     TNode *left = nullptr;
     TNode *right = nullptr;
+    // Identifies if a node is a leaf
+    boolean isLeaf;
 
 public:
     TNode(int num);
@@ -30,7 +32,7 @@ public:
 
 class ThreadedBST
 {
-    // Display the tree in order
+    // Display the tree in order traversal
     friend ostream &operator<<(ostream &out, const ThreadedBST &tBST);
 
 private:
@@ -49,11 +51,23 @@ private:
 
 public:
     /**
- * @brief Construct a new Threaded B.S.T. object
- * 
- * @param Integer data 
- */
+    * @brief Construct a new Threaded B.S.T. object
+    * 
+    * cin implementation 
+    * 
+    * @param Integer data specifying the number of nodes to create in your tree
+    */
     ThreadedBST(int data);
+
+    /**
+     * @brief Copy constructor copies all numbers then deletes even numebers
+     * 
+     * Impliment an "=" oprerator override
+     * 
+     * @param Original threaded Binary Search Tree
+     */
+    ThreadedBST(const ThreadedBST original);
+
     /**
      * @brief Destroy the Threaded B.S.T. object
      * 
@@ -67,12 +81,22 @@ public:
     // Gets the number of nodes contained in the binary tree
     int getNumberOfNodes() const;
 
-    // Adds data to binary tree
-    boolean add(const int newData);
+    // Remove all even numbers
+    void removeEvens()
+
+        // Adds data to binary tree
+        boolean add(const int newData);
     // Removes data from binary tree
     boolean remove(const int remData);
     // Checks if the value is in the tree
     boolean contains(const int targetData) const;
+
+    /**
+     * @brief "=" operator overload to make a deep 
+     * copy of a threaded binary search trees
+     * 
+     */
+    ThreadedBST &operator=(const ThreadedBST &original)
 };
 
 #endif
