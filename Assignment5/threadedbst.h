@@ -1,6 +1,6 @@
 /**
  * @file threadedBST.h
- * @author Tyler Moore (tmoore53@uw.edu)
+ * @author Tyler Moore (tmoore53@uw.edu) @tmoore53
  * @brief Threaded Binary Search Tree Design File
  * @version 0.1
  * @date 2021-11-28
