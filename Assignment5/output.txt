@@ -1,0 +1,23 @@
+Mon 06 Dec 2021 01:02:21 AM PST
+Linux csslab6h 4.19.0-17-amd64 #1 SMP Debian 4.19.194-3 (2021-07-18) x86_64 GNU/Linux
+uid=1076553(tmoore53) gid=2121076553(tmoore53) groups=2121076553(tmoore53),605559(lab-access)
+=====================================================
+1. Compiles without warnings with -Wall -Wextra flags
+=====================================================
+=====================================================
+2. Runs and produces correct output
+=====================================================
+Enter the amount of nodes that the banary tree should have.
+You created a binary search tree that contains 7 nodes
+./create-output.sh: line 69: 196477 Segmentation fault      $EXEC_PROGRAM
+=====================================================
+3. clang-tidy warnings are fixed
+=====================================================
+=====================================================
+4. clang-format does not find any formatting issues
+=====================================================
+Running clang-format on ./main.cpp
+Running clang-format on ./threadedbst.cpp
+=====================================================
+5. No memory leaks using g++
+=====================================================
