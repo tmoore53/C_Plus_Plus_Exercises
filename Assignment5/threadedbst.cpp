@@ -54,7 +54,9 @@ TNode *ThreadedBST::addNode(int left, int right) {
 ThreadedBST::~ThreadedBST() { destructorHelper(root); }
 
 void ThreadedBST::destructorHelper(TNode *&node) {
-  destructorHelper(node->left);
-  destructorHelper(node->right);
+  if (node->left != nullptr)
+    destructorHelper(node->left);
+  if (node->right != nullptr)
+    destructorHelper(node->right);
   delete node;
 }
