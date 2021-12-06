@@ -8,10 +8,11 @@
  */
 #ifndef ASS5_THREADEDBST_H
 #define ASS5_THREADEDBST_H
+using namespace std;
 
 class ThreadedBST;
 
-class TNode
+struct TNode
 {
     friend class ThreadedBST;
 
@@ -23,7 +24,7 @@ private:
     // Data greater than this date
     TNode *right = nullptr;
     // Identifies if a node is a leaf
-    boolean isLeaf;
+    bool isLeaf = true;
 
 public:
     TNode(int num);
@@ -40,6 +41,7 @@ class ThreadedBST
 private:
     /* data */
     int height{0};
+    int numberOfNodes;
     TNode *root = nullptr;
 
     // Returns the root data
@@ -48,6 +50,8 @@ private:
     TNode *getTargretNode(const int &nodeData) const;
     // Retreaves the right node pointer's inorder successor
     TNode *getInorderSuccessor(const int &nodeData) const;
+    // Helper method to insert new nodes
+    TNode *addNode(int left, int right);
 
 public:
     /**
@@ -67,7 +71,7 @@ public:
     ~ThreadedBST();
 
     // Checks if binary tree is empty
-    boolean isEmpty() const;
+    bool isEmpty() const;
     // Gets the height of the binary tree
     int getHeight() const;
     // Gets the number of nodes contained in the binary tree
@@ -77,7 +81,7 @@ public:
     void removeEvens();
 
     // Checks if the value is in the tree
-    boolean contains(const int &targetData) const;
+    bool contains(const int &targetData) const;
 
     /**
      * @brief "=" operator overload to make a deep 
