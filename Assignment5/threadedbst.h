@@ -24,7 +24,7 @@ private:
   // Data greater than this date
   TNode *right = nullptr;
   // Identifies if a node is a leaf
-  bool isLeaf = true;
+  bool isLeaf = false;
 
 public:
   TNode(int num);

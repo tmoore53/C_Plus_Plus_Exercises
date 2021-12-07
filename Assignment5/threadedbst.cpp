@@ -34,7 +34,7 @@ ThreadedBST::ThreadedBST() {
   cout << "You created a binary search tree that contains "
        << this->getNumberOfNodes() << " nodes" << endl;
 
-  this->root = addNode(0, getNumberOfNodes());
+  this->root = addNode(0, getNumberOfNodes() + 1);
 }
 
 TNode *ThreadedBST::addNode(int left, int right) {
@@ -42,18 +42,20 @@ TNode *ThreadedBST::addNode(int left, int right) {
     return nullptr;
 
   if (left + 1 == right)
-    return new TNode(right);
+    return nullptr;
 
   int midpoint = left + (right - left) / 2;
   TNode *currNode = new TNode(midpoint);
   currNode->left = addNode(left, midpoint);
   currNode->right = addNode(midpoint, right);
+  if (currNode->left == nullptr && currNode->right == nullptr)
+    currNode->isLeaf = true;
   return currNode;
 }
 
 ostream &operator<<(ostream &out, const ThreadedBST &tBST) {
   tBST.printHelper(tBST.root);
-  return out;
+  return out << "\n";
 }
 
 void ThreadedBST::printHelper(TNode *node) const {
