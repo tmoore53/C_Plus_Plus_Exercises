@@ -54,7 +54,7 @@ private:
   // Helper method that enables traversal though the tree
   void destructorHelper(TNode *&node);
   // Helper method to enable traversing through the tree
-  string printHelper(TNode *&node);
+  void printHelper(TNode *node) const;
 
 public:
   /**
