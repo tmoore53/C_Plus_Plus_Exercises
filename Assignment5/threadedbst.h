@@ -35,7 +35,7 @@ public:
 
 class ThreadedBST {
   // Display the tree in order traversal
-  friend std::ostream &operator<<(ostream &out, const ThreadedBST &tBST);
+  friend ostream &operator<<(ostream &out, const ThreadedBST &tBST);
 
 private:
   /* data */
@@ -51,7 +51,10 @@ private:
   TNode *getInorderSuccessor(const int &nodeData) const;
   // Helper method to insert new nodes
   TNode *addNode(int left, int right);
+  // Helper method that enables traversal though the tree
   void destructorHelper(TNode *&node);
+  // Helper method to enable traversing through the tree
+  string printHelper(TNode *&node);
 
 public:
   /**

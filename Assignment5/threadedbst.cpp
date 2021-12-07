@@ -51,6 +51,21 @@ TNode *ThreadedBST::addNode(int left, int right) {
   return currNode;
 }
 
+ostream &operator<<(ostream &out, const ThreadedBST &tBST) {
+  out << tBST.printHelper(tBST.root);
+  return out;
+}
+
+string ThreadedBST::printHelper(const TNode *&node) {
+  string nodeValue = " ";
+  if (node != nullptr) {
+    printHelper(node->left);
+    nodeValue += node->data;
+    printHelper(node->right);
+  }
+  return nodeValue;
+}
+
 ThreadedBST::~ThreadedBST() { destructorHelper(root); }
 
 void ThreadedBST::destructorHelper(TNode *&node) {
