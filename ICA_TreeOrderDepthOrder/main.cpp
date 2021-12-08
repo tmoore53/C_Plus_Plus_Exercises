@@ -3,6 +3,16 @@
 #include <queue>
 using namespace std;
 
+/**
+ * @brief  Leet code challenge 102
+ * @tmoore53
+ * 
+ * https://leetcode.com/problems/binary-tree-level-order-traversal/submissions/ 
+ * 
+ * 
+ * 
+ */
+
 // Definition for a binary tree node.
 struct TreeNode
 {
@@ -77,45 +87,3 @@ int main()
 
     return 0;
 }
-
-/**
- * @brief 
- * /*
-vector<vector<int>> result;
-if (root == nullptr) {return result;}
-queue<TreeNode *> currentNodes;
-currentNodes.push(root);
-while(!currentNodes.empty()){
-queue<treeNode*> nextnodes;
-vector<int> thisLevel;
-while(!currentNodes.empty()){
-auto curr = currentNodes.front();
-currentNodes.pop();
-thisLevel.push_back(curr->val);
-if(curr->left != nullptr){nextNodes.push(curr->left);}
-if(curr->right != nullptr){nextNodes.push(curr->right);}
-}
-result.push_back(thisLevel);
-currentNodes - nextNodes;
-}
-return result
-}
-
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> vecShell;
-        vector<int> insideVec;
-        
-        if(root->left != nullptr)
-            root->left->val
-        
-    }
-    
-    vector<int> insideVector(TreeNode* root, vector<int> vec, int level){
-        if(root == nullptr)
-            return null;
-        vec
-    }
-
-
-
-*/
