@@ -34,7 +34,7 @@ public:
 };
 
 class ThreadedBST {
-  // Display the tree in order traversal
+  // Display the tree in order traversal with right threads
   friend ostream &operator<<(ostream &out, const ThreadedBST &tBST);
 
 private:
@@ -42,6 +42,7 @@ private:
   int height{0};
   int numberOfNodes;
   TNode *root = nullptr;
+  TNode *parentNode = root;
   // Returns the lowest node value
   TNode *findRightThread(TNode *&leftestNode);
 
@@ -55,8 +56,8 @@ private:
   TNode *addNode(int left, int right);
   // Helper method that enables traversal though the tree
   void destructorHelper(TNode *&node);
-  // Helper method to enable traversing through the tree
-  void printHelper(TNode *node) const;
+  // Helper method to enable traversing through the tree in order
+  void inOrderPrint(TNode *node) const;
 
 public:
   /**

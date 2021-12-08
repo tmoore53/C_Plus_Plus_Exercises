@@ -38,32 +38,33 @@ ThreadedBST::ThreadedBST() {
 }
 
 TNode *ThreadedBST::addNode(int left, int right) {
-  if (left > right)
-    return nullptr;
-
   if (left + 1 == right)
     return nullptr;
-
+  // set the midpoint
   int midpoint = left + (right - left) / 2;
+  // Create a new node with midpoint value
   TNode *currNode = new TNode(midpoint);
+  // if the node is the root of the tree set the parent
+  if (midpoint == getNumberOfNodes() / 2)
+    parentNode = currNode;
   currNode->left = addNode(left, midpoint);
   currNode->right = addNode(midpoint, right);
-  if (currNode->left == nullptr && currNode->right == nullptr)
+  if (currNode->right == nullptr && currNode->data < this->getNumberOfNodes())
     currNode->rightThread = true;
   return currNode;
 }
 
 ostream &operator<<(ostream &out, const ThreadedBST &tBST) {
-  tBST.printHelper(tBST.root);
+  tBST.inOrderPrint(tBST.root);
   return out << "\n";
 }
 
-void ThreadedBST::printHelper(TNode *node) const {
+void ThreadedBST::inOrderPrint(TNode *node) const {
   if (node != nullptr) {
-    printHelper(node->left);
+    inOrderPrint(node->left);
     cout << node->data;
     cout << " ";
-    printHelper(node->right);
+    inOrderPrint(node->right);
   }
 }
 
