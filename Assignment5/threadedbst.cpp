@@ -49,7 +49,7 @@ TNode *ThreadedBST::addNode(int left, int right) {
   currNode->left = addNode(left, midpoint);
   currNode->right = addNode(midpoint, right);
   if (currNode->left == nullptr && currNode->right == nullptr)
-    currNode->isLeaf = true;
+    currNode->rightThread = true;
   return currNode;
 }
 
