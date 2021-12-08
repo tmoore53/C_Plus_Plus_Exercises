@@ -24,7 +24,7 @@ private:
   // Data greater than this date
   TNode *right = nullptr;
   // Identifies if a node is a leaf
-  bool isLeaf = false;
+  bool rightThread = false;
 
 public:
   TNode(int num);
@@ -42,6 +42,8 @@ private:
   int height{0};
   int numberOfNodes;
   TNode *root = nullptr;
+  // Returns the lowest node value
+  TNode *findRightThread(TNode *&leftestNode);
 
   // Returns the root data
   int getRootData() const;
