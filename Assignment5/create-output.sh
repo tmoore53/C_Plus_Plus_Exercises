@@ -97,12 +97,17 @@ fi
 echo "====================================================="
 echo "5. No memory leaks using g++"
 echo "====================================================="
+echo "=========================TEST1============================"
 
-rm ./a.out 2>/dev/null
+#rm ./a.out 2>/dev/null
+echo "=========================TEST2============================"
 
 g++ -std=c++11 -fsanitize=address -fno-omit-frame-pointer -g *.cpp
+echo "=========================TEST3============================"
+
 # Execute program
-$EXEC_PROGRAM > /dev/null 2> /dev/null
+#$EXEC_PROGRAM > /dev/null 2> /dev/null
+echo "=========================TEST4============================"
 
 
 echo "====================================================="
@@ -111,14 +116,21 @@ echo "====================================================="
 
 rm ./a.out 2>/dev/null
 
+echo "=========================TEST5============================"
+
+
 if hash valgrind 2>/dev/null; then
+echo "=========================TEST6============================"
 
   g++ -g -std=c++11 *.cpp
+echo "=========================TEST7============================"
 
   # redirect program output to /dev/null will running valgrind
   valgrind --log-file="valgrind-output.txt" $EXEC_PROGRAM > /dev/null >/dev/null
+echo "=========================TEST8============================"
 
   cat valgrind-output.txt
+echo "=========================TEST9============================"
 
   #rm valgrind-output.txt 2>/dev/null
 
