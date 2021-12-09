@@ -42,7 +42,7 @@ private:
   int height{0};
   int numberOfNodes;
   TNode *root = nullptr;
-  TNode *parentNode = root;
+  TNode *needle = nullptr;
   // Returns the lowest node value
   TNode *findRightThread(TNode *&leftestNode);
 
@@ -58,6 +58,23 @@ private:
   void destructorHelper(TNode *&node);
   // Helper method to enable traversing through the tree in order
   void inOrderPrint(TNode *node) const;
+  // Helper method to print tree that is threaded
+  void threadedPrint(TNode *root) const;
+  // Helper method to get the most left node from the starting node
+  TNode *getLeftNode(TNode *node);
+  // Create a threaded traversal method
+  TNode *threadedTraverse(TNode *&node) {
+    if (node == nullptr)
+      return node;
+    TNode *retNode = getLeftNode(node);
+
+    cout << retNode->data;
+    threadedTraverse(retNode->right);
+
+    if (retNode->rightThread)
+      threadedTraverse(getLeftNode(retNode->right));
+    return retNode;
+  }
 
 public:
   /**

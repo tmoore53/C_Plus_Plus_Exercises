@@ -44,18 +44,29 @@ TNode *ThreadedBST::addNode(int left, int right) {
   int midpoint = left + (right - left) / 2;
   // Create a new node with midpoint value
   TNode *currNode = new TNode(midpoint);
-  // if the node is the root of the tree set the parent
-  if (midpoint == getNumberOfNodes() / 2)
-    parentNode = currNode;
+
   currNode->left = addNode(left, midpoint);
+  if (needle != nullptr && needle->data < currNode->data) {
+    needle->right = currNode;
+    needle = nullptr;
+  }
   currNode->right = addNode(midpoint, right);
+  if (needle != nullptr && needle->data < currNode->data) {
+    needle->right = currNode;
+    needle = nullptr;
+  }
   if (currNode->right == nullptr && currNode->data < this->getNumberOfNodes())
     currNode->rightThread = true;
+
+  if (currNode->rightThread) {
+    needle = currNode;
+  }
   return currNode;
 }
 
 ostream &operator<<(ostream &out, const ThreadedBST &tBST) {
-  tBST.inOrderPrint(tBST.root);
+  tBST.threadedPrint(tBST.root);
+  // tBST.inOrderPrint(tBST.root);
   return out << "\n";
 }
 
@@ -66,6 +77,50 @@ void ThreadedBST::inOrderPrint(TNode *node) const {
     cout << " ";
     inOrderPrint(node->right);
   }
+}
+
+TNode *ThreadedBST::getLeftNode(TNode *node) {
+  if (node == nullptr)
+    return node;
+  while (node->left != nullptr) {
+    node = node->left;
+  }
+  return node;
+}
+
+void ThreadedBST::threadedPrint(TNode *root) const {
+  if (root == nullptr)
+    return;
+  TNode *curr = getLeftNode(root);
+
+  while (curr != nullptr) {
+    cout << curr->data;
+    cout << " ";
+    if (curr->rightThread) {
+      curr = curr->right;
+    } else {
+      curr = getLeftNode(curr->right);
+    }
+  }
+}
+
+/**
+ * @brief Verify this traversal works!
+ *
+ * @param node
+ * @return TNode*
+ */
+TNode *ThreadedBST::threadedTraverse(TNode *&node) {
+  if (node == nullptr)
+    return node;
+  TNode *retNode = getLeftNode(node);
+
+  cout << retNode->data;
+  threadedTraverse(retNode->right);
+
+  if (retNode->rightThread)
+    threadedTraverse(getLeftNode(retNode->right));
+  return retNode;
 }
 
 ThreadedBST::~ThreadedBST() { destructorHelper(root); }
