@@ -25,6 +25,8 @@ private:
   TNode *right = nullptr;
   // Identifies if a node is a leaf
   bool rightThread = false;
+  // Identifies parent
+  TNode *parent = nullptr;
 
 public:
   TNode(int num);
@@ -63,7 +65,7 @@ private:
   // Helper method to get the most left node from the starting node
   TNode *getLeftNode(TNode *node) const;
   // Create a threaded traversal method
-  void threadedTraverse(TNode *&node);
+  void threadedTraverse();
 
 public:
   /**
@@ -83,7 +85,10 @@ public:
    */
   ~ThreadedBST();
 
+  TNode *getRoot();
+
   // Checks if binary tree is empty
+
   bool isEmpty() const;
   // Gets the height of the binary tree
   int getHeight() const;
@@ -91,7 +96,7 @@ public:
   int getNumberOfNodes() const;
 
   // Remove all even numbers
-  void removeEvens();
+  void removeEvens(TNode *root);
 
   // Checks if the value is in the tree
   bool contains(const int &targetData) const;
