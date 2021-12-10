@@ -61,20 +61,9 @@ private:
   // Helper method to print tree that is threaded
   void threadedPrint(TNode *root) const;
   // Helper method to get the most left node from the starting node
-  TNode *getLeftNode(TNode *node);
+  TNode *getLeftNode(TNode *node) const;
   // Create a threaded traversal method
-  TNode *threadedTraverse(TNode *&node) {
-    if (node == nullptr)
-      return node;
-    TNode *retNode = getLeftNode(node);
-
-    cout << retNode->data;
-    threadedTraverse(retNode->right);
-
-    if (retNode->rightThread)
-      threadedTraverse(getLeftNode(retNode->right));
-    return retNode;
-  }
+  void threadedTraverse(TNode *&node);
 
 public:
   /**

@@ -79,7 +79,7 @@ void ThreadedBST::inOrderPrint(TNode *node) const {
   }
 }
 
-TNode *ThreadedBST::getLeftNode(TNode *node) {
+TNode *ThreadedBST::getLeftNode(TNode *node) const {
   if (node == nullptr)
     return node;
   while (node->left != nullptr) {
@@ -110,22 +110,29 @@ void ThreadedBST::threadedPrint(TNode *root) const {
  * @param node
  * @return TNode*
  */
-TNode *ThreadedBST::threadedTraverse(TNode *&node) {
-  if (node == nullptr)
-    return node;
-  TNode *retNode = getLeftNode(node);
+void ThreadedBST::threadedTraverse(TNode *&node) {
+  if (root == nullptr)
+    return;
+  TNode *curr = getLeftNode(root);
+  TNode *temp;
+  while (curr != nullptr) {
+    cout << curr->data;
+    cout << " ";
+    if (curr->rightThread) {
 
-  cout << retNode->data;
-  threadedTraverse(retNode->right);
-
-  if (retNode->rightThread)
-    threadedTraverse(getLeftNode(retNode->right));
-  return retNode;
+      temp = curr->right;
+      delete curr;
+      curr = temp;
+    } else {
+      curr = getLeftNode(curr->right);
+    }
+  }
 }
 
-ThreadedBST::~ThreadedBST() { destructorHelper(root); }
+ThreadedBST::~ThreadedBST() { threadedTraverse(root); }
 
 void ThreadedBST::destructorHelper(TNode *&node) {
+
   if (node->left != nullptr)
     destructorHelper(node->left);
   if (node->right != nullptr)
