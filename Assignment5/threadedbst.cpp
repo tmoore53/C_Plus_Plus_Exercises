@@ -188,5 +188,5 @@ void ThreadedBST::destructorHelper(TNode *&node) {
     destructorHelper(node->left);
   if (node->right != nullptr)
     destructorHelper(node->right);
-  delete node;
-}
+  //   delete node;
+  // }

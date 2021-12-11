@@ -114,34 +114,4 @@ public:
   // // Removes data from binary tree
   // boolean remove(const int remData);
 };
-
-// TNode *ThreadedBST::addNode(int left, int right) {
-//   if (left > right)
-//     return nullptr;
-
-//   if (left + 1 == right)
-//     return nullptr;
-
-//   int midpoint = left + (right - left) / 2;
-//   TNode *currNode = new TNode(midpoint);
-//   currNode->left = addNode(left, midpoint);
-//   if (currNode->left != nullptr && currNode->left->rightThread) {
-//     currNode->left->right = currNode;
-//   }
-//   currNode->right = addNode(midpoint, right);
-//   if (currNode->right == nullptr)
-//     currNode->rightThread = true;
-//   return currNode;
-// }
-
-// void ThreadedBST::printHelper(TNode *node) const {
-//   if (node != nullptr) {
-//     printHelper(node->left);
-//     cout << node->data;
-//     cout << " ";
-//     if (!node->right->rightThread)
-//       printHelper(node->right);
-//   }
-// }
-
 #endif
