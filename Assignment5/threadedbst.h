@@ -115,3 +115,14 @@ public:
   // boolean remove(const int remData);
 };
 #endif
+
+/**
+ * @brief
+ *     if (curr->right->data % 2 != 0 && curr->rightThread) {
+      curr = curr->right;
+    }
+    if (curr != root && curr->left != nullptr)
+      removeEvens(curr);
+
+ *
+ */

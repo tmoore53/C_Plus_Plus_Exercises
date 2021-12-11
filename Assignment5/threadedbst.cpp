@@ -100,7 +100,8 @@ void ThreadedBST::threadedPrint(TNode *root) const {
   while (curr != nullptr) {
     cout << curr->data;
     cout << " ";
-    if (curr->rightThread && curr->right != nullptr) {
+    if (curr->rightThread ||
+        (curr->right != nullptr && curr->left == nullptr)) {
       curr = curr->right;
     } else {
       curr = getLeftNode(curr->right);
@@ -127,6 +128,7 @@ void ThreadedBST::threadedTraverse() {
       temp = curr->right;
       delete curr;
       curr = temp;
+      temp = nullptr;
     } else {
       curr = getLeftNode(curr->right);
     }
@@ -137,6 +139,10 @@ void ThreadedBST::threadedTraverse() {
  * @brief
  *
  * Fix this
+ *
+ * Failing at curr = 17
+ *
+ * setting the parent nodes need to be fixed
  * @param node
  */
 void ThreadedBST::removeEvens(TNode *node) {
@@ -153,28 +159,69 @@ void ThreadedBST::removeEvens(TNode *node) {
 
   if (curr->data % 2 == 0) {
     temp = curr;
-    if (curr->parent != nullptr) {
-      curr = curr->parent;
+    curr = curr->right;
+    if (temp->parent != nullptr) {
+      // curr->parent->left = temp->parent;
+      if (temp->parent == curr->right) {
+        if (temp->parent->parent->right == temp->parent)
+          temp->parent->parent->right = curr->parent->parent;
+
+        if (temp->parent->parent->left == temp->parent)
+          temp->parent->parent->left = curr->parent->parent;
+        curr->parent = temp->parent;
+      }
     }
+
+    curr->left = nullptr;
     delete temp;
+    temp = nullptr;
   }
 
   while (curr->right != nullptr) {
-    if (curr->right->data % 2 == 0 && !curr->rightThread) {
-      temp = curr->right;
-      curr->right = curr->right->right;
+    temp = curr->right;
+
+    if (curr->right->data % 2 == 0 &&
+        (curr->rightThread || curr->left == nullptr)) {
+      if (curr->parent == curr->right) {
+        if (curr->parent->parent->left == curr->right)
+          // This one works in the begining and not at 17
+          curr->parent->parent->left = curr;
+        if (curr->parent->parent->right == curr->right)
+          curr->parent->parent->right = curr;
+
+        // curr->right->right->parent = curr;
+      }
       bool transfer = temp->rightThread && temp != root;
-      delete temp;
-      if (curr->right != nullptr) {
+      if (curr->right != nullptr)
         curr->rightThread = transfer;
 
-        curr = curr->right->right;
-      } else {
-        removeEvens(curr->right);
+      if (curr->left != nullptr)
+        curr->left = curr->left->left;
+      curr->right = curr->right->right;
+      if (temp == root) {
+        curr->right = getLeftNode(root->right);
+        root->right->parent = root->left;
+        root = root->left;
+        root->parent = nullptr;
       }
-    } else {
-      removeEvens(curr->right);
+      curr = curr->right;
+
+      delete temp;
+      temp = nullptr;
     }
+
+    else if (curr->right->data % 2 != 0 && curr->right != root) {
+      curr = getLeftNode(curr->right);
+      removeEvens(curr);
+      break;
+    } else {
+      curr = getLeftNode(curr->right);
+      if (curr->data % 2 == 0)
+        removeEvens(curr);
+      break;
+    }
+    if (curr == nullptr)
+      break;
   }
 }
 
@@ -188,5 +235,6 @@ void ThreadedBST::destructorHelper(TNode *&node) {
     destructorHelper(node->left);
   if (node->right != nullptr)
     destructorHelper(node->right);
-  //   delete node;
-  // }
+  delete node;
+  node = nullptr;
+}
