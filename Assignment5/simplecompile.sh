@@ -17,20 +17,20 @@
 
 date
 
-echo "*** compiling with clang++ to create an executable called myprogram"
+echo "*** compiling this code with clang++ to create an executable called myprogram"
 clang++ --version
 clang++ -std=c++14 -Wall -Wextra -Wno-sign-compare *.cpp -g -o myprogram
 
 echo "*** running clang-tidy using options from .clang-tidy"
 clang-tidy --version
-clang-tidy creature.cpp -- -std=c++14
+clang-tidy myprogram -- -std=c++14
 
 echo "*** running myprogram"
-./a.out
+./myprogram
 
 # valgrind will detect memory leaks
 echo "*** running with valgrind"
-valgrind ./a.out
+valgrind ./myprogram
 
 echo "*** cleaning up, deleting myprogram"
 rm myprogram

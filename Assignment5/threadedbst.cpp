@@ -153,10 +153,10 @@ void ThreadedBST::removeEvens(TNode *node) {
 
   if (curr->data % 2 == 0) {
     temp = curr;
-    if (curr->parent != nullptr) {
-      curr = curr->parent;
-    }
+    curr = curr->parent;
+
     delete temp;
+    temp = nullptr;
   }
 
   while (curr->right != nullptr) {
@@ -165,6 +165,7 @@ void ThreadedBST::removeEvens(TNode *node) {
       curr->right = curr->right->right;
       bool transfer = temp->rightThread && temp != root;
       delete temp;
+      temp = nullptr;
       if (curr->right != nullptr) {
         curr->rightThread = transfer;
 
@@ -188,5 +189,5 @@ void ThreadedBST::destructorHelper(TNode *&node) {
     destructorHelper(node->left);
   if (node->right != nullptr)
     destructorHelper(node->right);
-  //   delete node;
-  // }
+  delete node;
+}

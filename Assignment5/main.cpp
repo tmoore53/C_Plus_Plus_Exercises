@@ -3,7 +3,7 @@
 using namespace std;
 int main() {
   ThreadedBST test;
-  test.removeEvens(test.getRoot());
+  // test.removeEvens(test.getRoot());
   cout << test;
   ThreadedBST test2;
   // test2.removeEvens(test.getRoot());
