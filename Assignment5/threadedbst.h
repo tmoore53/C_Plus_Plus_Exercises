@@ -48,6 +48,10 @@ private:
   // Returns the lowest node value
   TNode *findRightThread(TNode *&leftestNode);
 
+  // Retreaves Tree Node desired
+  TNode *getTargretNode(const int &nodeData) const;
+  // Retreaves the right node pointer's inorder successor
+  TNode *getInorderSuccessor(const int &nodeData) const;
   // Helper method to insert new nodes
   TNode *addNode(int left, int right);
   // Helper method that enables traversal though the tree
@@ -65,9 +69,10 @@ private:
 
 public:
   /**
-   * @brief Construct a new Threaded B.S.T. object  ---------- Not implemented
-   * --------- The constructor of will use cin implementation to set the amount
-   * of nodes into the threaded binary search tree.
+   * @brief Construct a new Threaded B.S.T. object
+   *
+   * The constructor of will use cin implementation to set the amount of
+   * nodes into the threaded binary search tree.
    *
    * @param Integer data specifying the number of nodes to create in your
    * tree
@@ -79,10 +84,11 @@ public:
    *
    */
   ~ThreadedBST();
-  // Getter that returns the tree's root node
+
   TNode *getRoot();
 
   // Checks if binary tree is empty
+
   bool isEmpty() const;
   // Gets the height of the binary tree
   int getHeight() const;
@@ -90,13 +96,6 @@ public:
   int getNumberOfNodes() const;
 
   // Remove all even numbers
-  /**
-   * @brief  This method does not fully work. This will crash the program
-   * *******
-   *
-   *
-   * @param root
-   */
   void removeEvens(TNode *root);
 
   // Checks if the value is in the tree
@@ -108,5 +107,22 @@ public:
    *
    */
   ThreadedBST &operator=(const ThreadedBST &original);
+
+  // The following 2 methods don't need to be implemented
+  // // Adds data to binary tree
+  // boolean add(const int newData);
+  // // Removes data from binary tree
+  // boolean remove(const int remData);
 };
 #endif
+
+/**
+ * @brief
+ *     if (curr->right->data % 2 != 0 && curr->rightThread) {
+      curr = curr->right;
+    }
+    if (curr != root && curr->left != nullptr)
+      removeEvens(curr);
+
+ *
+ */

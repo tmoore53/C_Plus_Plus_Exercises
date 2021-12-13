@@ -334,7 +334,7 @@ TNode *ThreadedBST::getRoot() { return root; }
  * @brief Destroy the Threaded B S T:: Threaded B S T object
  *
  */
-ThreadedBST::~ThreadedBST() { threadedTraverse(); }
+ThreadedBST::~ThreadedBST() { destructorHelper(root); }
 
 /**
  * @brief Destructor helper
@@ -345,7 +345,7 @@ void ThreadedBST::destructorHelper(TNode *&node) {
 
   if (node->left != nullptr)
     destructorHelper(node->left);
-  if (node->right != nullptr)
+  if (node->right != nullptr && !node->rightThread)
     destructorHelper(node->right);
   delete node;
   node = nullptr;
