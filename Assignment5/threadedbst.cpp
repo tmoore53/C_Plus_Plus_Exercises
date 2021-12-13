@@ -107,6 +107,11 @@ ostream &operator<<(ostream &out, const ThreadedBST &tBST) {
   return out << "\n";
 }
 
+/**
+ * @brief Helper method that prints the contents of a tree in order
+ * 
+ * @param node 
+ */
 void ThreadedBST::inOrderPrint(TNode *node) const {
   if (node != nullptr) {
     inOrderPrint(node->left);
@@ -117,6 +122,14 @@ void ThreadedBST::inOrderPrint(TNode *node) const {
   }
 }
 
+/**
+ * @brief Returns to lowest valued node
+ * 
+ * Helper metthod 
+ * 
+ * @param node 
+ * @return TNode* 
+ */
 TNode *ThreadedBST::getLeftNode(TNode *node) const {
   if (node == nullptr)
     return node;
@@ -126,6 +139,13 @@ TNode *ThreadedBST::getLeftNode(TNode *node) const {
   return node;
 }
 
+/**
+ * @brief Helper method that Prints all nodes in the tree
+ * 
+ *  Starts at the lowest node and prints it's successor 
+ * 
+ * @param root 
+ */
 void ThreadedBST::threadedPrint(TNode *root) const {
   if (root == nullptr)
     return;
@@ -172,6 +192,8 @@ void ThreadedBST::threadedTraverse() {
 /**
  * @brief
  * deletes even numbers from the tree
+ * 
+ *  ------- Should only be ran once per tree ----
  *
  * ------This function does not fully function------
  *
@@ -194,23 +216,6 @@ void ThreadedBST::removeEvens(TNode *node) {
   TNode *curr = getLeftNode(node);
 
   if (curr->data % 2 == 0) {
-<<<<<<< HEAD
-    temp = curr;
-    curr = curr->parent;
-
-    delete temp;
-    temp = nullptr;
-  }
-
-  while (curr->right != nullptr) {
-    if (curr->right->data % 2 == 0 && !curr->rightThread) {
-      temp = curr->right;
-      curr->right = curr->right->right;
-      bool transfer = temp->rightThread && temp != root;
-      delete temp;
-      temp = nullptr;
-      if (curr->right != nullptr) {
-=======
     target = curr;
     curr = curr->right;
     if (curr == nullptr) {
@@ -285,7 +290,6 @@ void ThreadedBST::removeEvens(TNode *node) {
       }
       bool transfer = target->rightThread && target != root;
       if (curr->right != nullptr)
->>>>>>> 40aa8d69cf5e2e877d7c99f37d2252abe4f12251
         curr->rightThread = transfer;
 
       if (curr->left != nullptr && curr->left != nullptr)
@@ -318,10 +322,25 @@ void ThreadedBST::removeEvens(TNode *node) {
   }
 }
 
+/**
+ * @brief Root getter
+ * 
+ * returns the root node of the tree 
+ * @return TNode* 
+ */
 TNode *ThreadedBST::getRoot() { return root; }
 
+/**
+ * @brief Destroy the Threaded B S T:: Threaded B S T object
+ * 
+ */
 ThreadedBST::~ThreadedBST() { threadedTraverse(); }
 
+/**
+ * @brief Destructor helper
+ * 
+ * @param node 
+ */
 void ThreadedBST::destructorHelper(TNode *&node) {
 
   if (node->left != nullptr)
@@ -329,119 +348,115 @@ void ThreadedBST::destructorHelper(TNode *&node) {
   if (node->right != nullptr)
     destructorHelper(node->right);
   delete node;
-<<<<<<< HEAD
-}
-=======
   node = nullptr;
 }
 
-// /* function to delete element in binary tree */
-// TNode *ThreadedBST::deletion(TNode *root, int val) {
-//   if (root == nullptr)
-//     return nullptr;
+  // /* function to delete element in binary tree */
+  // TNode *ThreadedBST::deletion(TNode *root, int val) {
+  //   if (root == nullptr)
+  //     return nullptr;
 
-//   if (root->left == nullptr && root->right == nullptr) {
-//     if (root->data == val)
-//       return nullptr;
-//     else
-//       return root;
-//   }
+  //   if (root->left == nullptr && root->right == nullptr) {
+  //     if (root->data == val)
+  //       return nullptr;
+  //     else
+  //       return root;
+  //   }
 
-//   queue<TNode *> q;
-//   q.push(root);
+  //   queue<TNode *> q;
+  //   q.push(root);
 
-//   TNode *temp;
-//   TNode *key_node = nullptr;
+  //   TNode *temp;
+  //   TNode *key_node = nullptr;
 
-//   // Do level order traversal to find deepest
-//   // node(temp) and node to be deleted (key_node)
-//   while (!q.empty()) {
-//     temp = q.front();
-//     q.pop();
+  //   // Do level order traversal to find deepest
+  //   // node(temp) and node to be deleted (key_node)
+  //   while (!q.empty()) {
+  //     temp = q.front();
+  //     q.pop();
 
-//     if (temp->data == val) {
-//       key_node = temp;
-//       break;
-//     }
+  //     if (temp->data == val) {
+  //       key_node = temp;
+  //       break;
+  //     }
 
-//     if (temp->left != nullptr)
-//       q.push(temp->left);
+  //     if (temp->left != nullptr)
+  //       q.push(temp->left);
 
-//     if (temp->right != nullptr && !temp->rightThread)
-//       q.push(temp->right);
-//   }
+  //     if (temp->right != nullptr && !temp->rightThread)
+  //       q.push(temp->right);
+  //   }
 
-//   if (key_node != nullptr) {
-//     int x = temp->data;
-//     deletDeepest(root, temp);
-//     key_node->data = x;
-//   }
-//   return root;
-// }
+  //   if (key_node != nullptr) {
+  //     int x = temp->data;
+  //     deletDeepest(root, temp);
+  //     key_node->data = x;
+  //   }
+  //   return root;
+  // }
 
-// void ThreadedBST::copyConstructor(TNode *root, TNode *d_node) {
-//   // Temporary queue
-//   queue<TNode *> q;
-//   // Push the root
-//   q.push(root);
+  // void ThreadedBST::copyConstructor(TNode *root, TNode *d_node) {
+  //   // Temporary queue
+  //   queue<TNode *> q;
+  //   // Push the root
+  //   q.push(root);
 
-//   // Do level order traversal until last node
-//   TNode *temp;
-//   while (!q.empty()) {
-//     temp = q.front();
-//     q.pop();
-//     if (d_node->data % 2 == 0) {
-//       temp = nullptr;
-//       delete d_node;
-//       return;
-//     }
-//     if (temp->right != nullptr && !temp->rightThread) {
-//       if (d_node->data % 2 == 0) {
-//         temp->right = nullptr;
-//         delete d_node;
-//         return;
-//       } else
-//         q.push(temp->right);
-//     }
+  //   // Do level order traversal until last node
+  //   TNode *temp;
+  //   while (!q.empty()) {
+  //     temp = q.front();
+  //     q.pop();
+  //     if (d_node->data % 2 == 0) {
+  //       temp = nullptr;
+  //       delete d_node;
+  //       return;
+  //     }
+  //     if (temp->right != nullptr && !temp->rightThread) {
+  //       if (d_node->data % 2 == 0) {
+  //         temp->right = nullptr;
+  //         delete d_node;
+  //         return;
+  //       } else
+  //         q.push(temp->right);
+  //     }
 
-//     if (temp->left != nullptr) {
-//       if (d_node->data % 2 == 0) {
-//         temp->left = nullptr;
-//         delete d_node;
-//         return;
-//       } else
-//         q.push(temp->left);
-//     }
-//   }
-// }
+  //     if (temp->left != nullptr) {
+  //       if (d_node->data % 2 == 0) {
+  //         temp->left = nullptr;
+  //         delete d_node;
+  //         return;
+  //       } else
+  //         q.push(temp->left);
+  //     }
+  //   }
+  // }
 
-// void ThreadedBST::copyConstructor(TNode *root, TNode *d_node) {
-//   vector<int> retVec;
-//   // Temporary queue
-//   queue<TNode *> q;
-//   // Push the root
-//   q.push(root);
+  // void ThreadedBST::copyConstructor(TNode *root, TNode *d_node) {
+  //   vector<int> retVec;
+  //   // Temporary queue
+  //   queue<TNode *> q;
+  //   // Push the root
+  //   q.push(root);
 
-//   // Do level order traversal until last node
-//   TNode *temp;
-//   while (!q.empty()) {
-//     temp = q.front();
-//     q.pop();
+  //   // Do level order traversal until last node
+  //   TNode *temp;
+  //   while (!q.empty()) {
+  //     temp = q.front();
+  //     q.pop();
 
-//     if (temp->left != nullptr) {
-//       copyConstructor(temp->left, root);
-//       // q.push(temp->left);
-//     }
+  //     if (temp->left != nullptr) {
+  //       copyConstructor(temp->left, root);
+  //       // q.push(temp->left);
+  //     }
 
-//     if (temp->right != nullptr && !temp->rightThread) {
-//       copyConstructor(temp->right, root);
+  //     if (temp->right != nullptr && !temp->rightThread) {
+  //       copyConstructor(temp->right, root);
 
-//       // q.push(temp->right);
-//     }
-//     retVec.push_back(temp->data);
-//   }
-//   // return retVec;
-// }
+  //       // q.push(temp->right);
+  //     }
+  //     retVec.push_back(temp->data);
+  //   }
+  //   // return retVec;
+  // }
 
-// ThreadedBST &ThreadedBST::operator=(const ThreadedBST &original) {}
->>>>>>> 40aa8d69cf5e2e877d7c99f37d2252abe4f12251
+  // ThreadedBST &ThreadedBST::operator=(const ThreadedBST &original) {}

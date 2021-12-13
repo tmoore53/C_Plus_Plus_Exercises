@@ -48,6 +48,8 @@ private:
   // Returns the lowest node value
   TNode *findRightThread(TNode *&leftestNode);
 
+  // Returns the root data
+  int getRootData() const;
   // Retreaves Tree Node desired
   TNode *getTargretNode(const int &nodeData) const;
   // Retreaves the right node pointer's inorder successor
@@ -64,8 +66,6 @@ private:
   TNode *getLeftNode(TNode *node) const;
   // Create a threaded traversal method
   void threadedTraverse();
-
-  int *returnBSTVal(const ThreadedBST &tree);
 
 public:
   /**
@@ -115,14 +115,3 @@ public:
   // boolean remove(const int remData);
 };
 #endif
-
-/**
- * @brief
- *     if (curr->right->data % 2 != 0 && curr->rightThread) {
-      curr = curr->right;
-    }
-    if (curr != root && curr->left != nullptr)
-      removeEvens(curr);
-
- *
- */
