@@ -4,6 +4,8 @@
  * @brief
  * @version 0.1
  * @date 2021-11-28
+ * 
+ * Comple and run bash ./simplecompile.sh > output.txt 2>&1
  *
  */
 
@@ -144,6 +146,7 @@ TNode *ThreadedBST::getLeftNode(TNode *node) const {
  *
  *  Starts at the lowest node and prints it's successor
  *
+ * This has memory leaks
  * @param root
  */
 void ThreadedBST::threadedPrint(TNode *root) const {

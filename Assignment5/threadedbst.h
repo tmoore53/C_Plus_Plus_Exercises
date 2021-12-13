@@ -4,6 +4,8 @@
  * @brief Threaded Binary Search Tree Design File
  * @version 0.1
  * @date 2021-11-28
+ * 
+ * Compile and run with bash ./simplecompile.sh > output.txt 2>&1
  *
  */
 #ifndef ASS5_THREADEDBST_H
