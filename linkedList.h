@@ -4,46 +4,46 @@
 #include <iostream>
 using namespace std;
 
-template <class datatype>
+template <class TTT>
 struct Node
 {
 
 public:
     Node();
-    Node(datatype item);
-    Node(datatype item, Node<datatype> *next);
+    Node(TTT item);
+    Node(TTT item, Node<TTT> *next);
     //~Node();
 
-    datatype getItem() const;
-    Node<datatype> *getNext() const;
+    TTT getItem() const;
+    Node<TTT> *getNext() const;
 
-    void setItem(const datatype item);
+    void setItem(const TTT item);
 
-    void setNext(const Node<datatype> *next);
+    void setNext(const Node<TTT> *next);
 
 private:
-    datatype Item;
-    Node<datatype> *Next;
+    TTT Item;
+    Node<TTT> *Next;
 };
 
-template <class datatype>
+template <class TTT>
 class LinkedList
 {
 
 public:
     //Constructors
     LinkedList();
-    LinkedList(datatype &item);
-    LinkedList(LinkedList<datatype> &copyList);
+    LinkedList(TTT &item);
+    LinkedList(LinkedList<TTT> &copyList);
     //~LinkedList();
 
     template <class T>
     friend std::ostream &operator<<(std::ostream &out, const LinkedList<T> &n);
 
-    bool add(datatype &item);
+    bool add(TTT &item);
     bool remove();
 
 private:
-    Node<datatype> *Head;
+    Node<TTT> *Head;
 };
 #endif

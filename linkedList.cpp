@@ -3,30 +3,30 @@
 using namespace std;
 
 /* Node implementation */
-template <class datatype>
-Node<datatype>::Node(datatype item) : Item{item}, Next{nullptr} {};
+template <class TTT>
+Node<TTT>::Node(TTT item) : Item{item}, Next{nullptr} {};
 
 /* Getters*/
-template <class datatype>
-Node<datatype> *Node<datatype>::getNext() const
+template <class TTT>
+Node<TTT> *Node<TTT>::getNext() const
 {
     return this->Next;
 }
 
-template <class datatype>
-datatype Node<datatype>::getItem() const
+template <class TTT>
+TTT Node<TTT>::getItem() const
 {
     return this->Item;
 }
 
 /* Setters*/
-template <class datatype>
-void Node<datatype>::setNext(const Node<datatype> *next)
+template <class TTT>
+void Node<TTT>::setNext(const Node<TTT> *next)
 {
     this->Next = next;
 }
-template <class datatype>
-void Node<datatype>::setItem(const datatype item)
+template <class TTT>
+void Node<TTT>::setItem(const TTT item)
 {
     this->Item = item;
 }
@@ -36,20 +36,20 @@ void Node<datatype>::setItem(const datatype item)
 
 /* START of Linked List implementation */
 
-template <class datatype>
-LinkedList<datatype>::LinkedList()
+template <class TTT>
+LinkedList<TTT>::LinkedList()
 {
     Head = nullptr;
 }
-template <class datatype>
-LinkedList<datatype>::LinkedList(datatype &item)
+template <class TTT>
+LinkedList<TTT>::LinkedList(TTT &item)
 {
-    Node<datatype> newNode(item);
+    Node<TTT> newNode(item);
     Head = &newNode;
 }
 
-template <class datatype>
-LinkedList<datatype>::LinkedList(LinkedList<datatype> &copyList)
+template <class TTT>
+LinkedList<TTT>::LinkedList(LinkedList<TTT> &copyList)
 {
 }
 
@@ -60,11 +60,11 @@ LinkedList<datatype>::LinkedList(LinkedList<datatype> &copyList)
 //     Head = nullptr;
 // }
 
-template <class datatype>
-bool LinkedList<datatype>::add(datatype &item)
+template <class TTT>
+bool LinkedList<TTT>::add(TTT &item)
 {
-    Node<datatype> newN = new Node<datatype>;
-    Node<datatype> *curr = Head;
+    Node<TTT> newN = new Node<TTT>;
+    Node<TTT> *curr = Head;
     while (curr->getNext() != nullptr)
     {
         curr = curr->getNext();
@@ -72,8 +72,8 @@ bool LinkedList<datatype>::add(datatype &item)
     return false;
 }
 
-template <class datatype>
-bool LinkedList<datatype>::remove()
+template <class TTT>
+bool LinkedList<TTT>::remove()
 {
 
     return false;
