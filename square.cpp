@@ -5,7 +5,7 @@ using namespace std;
 
 //Square::Square(){};
 
-explicit Square::Square(int length)
+Square::Square(int length)
 {
     _Length = length;
 }
