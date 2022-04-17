@@ -72,8 +72,73 @@ void testCat()
 int main()
 {
     cout << "Ready For the FInal?" << endl;
-    vTest();
-    testCat();
+    // vTest();
+    // testCat();
+    vector<char> ch = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'};
+
+    cout << "Before any Changes" << endl;
+    for (const auto c : ch)
+    {
+        cout << c;
+    }
+    cout << endl;
+
+    cout << "ORR Gate \" \" " << endl;
+    for (int i{0}; i < ch.size(); i++)
+    {
+        ch[i] = ch[i] | ' ';
+    }
+    cout << endl;
+
+    for (const auto c : ch)
+    {
+        cout << c;
+    }
+    cout << endl;
+
+    cout << "AND Gate _ " << endl;
+    for (int i{0}; i < ch.size(); i++)
+    {
+        ch[i] = ch[i] & '_';
+    }
+    for (const auto c : ch)
+    {
+        cout << c;
+    }
+    cout << endl;
+
+    cout << "Adding 32 " << endl;
+    for (int i{0}; i < ch.size(); i++)
+    {
+        ch[i] = ch[i] + 32;
+    }
+    for (const auto c : ch)
+    {
+        cout << c;
+    }
+    cout << endl;
+
+    cout << "Subtracting 32 " << endl;
+    for (int i{0}; i < ch.size(); i++)
+    {
+        ch[i] = ch[i] - 32;
+    }
+    for (const auto c : ch)
+    {
+        cout << c;
+    }
+    cout << endl;
+    cout << endl;
+    char temp = 'a';
+    temp = temp & '_';
+    cout << temp << endl;
+
+    int num = 0x80000000;
+
+    cout << "Num = " << num << endl;
+    num--;
+
+    cout << "Num = " << num << endl;
 
     return -1;
 }

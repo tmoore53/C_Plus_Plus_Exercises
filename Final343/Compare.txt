@@ -1,0 +1,324 @@
+
+Page
+1
+of 13
+Lecture 05– Homework04  Using database db03
+5 points 1 thru 6
+10 ponts 7 thru 14
+20 points.  Alter, Begin, Rollback
+130 points possible. 
+This is a continuation of todays classwork.   Include the classwork problems in this submission
+Use the database file db03
+Name the file ‘04Homework.txt’
+For this project you will perform the indicated actions using insert, update, or delete
+After each  numbered operation is complete, you will execute a query ( provided) to check you work.
+Do not use a surrogate key in any command, unless the instructions say you can.
+Note change from db02.  There is an employeeNumber which is unique.
+IMPORTANT:
+At the beginning of your input file – put the following commands ( before any others)
+ALTER SEQUENCE employee_id_seq RESTART WITH 20;
+ALTER SEQUENCE meeting_id_seq RESTART WITH 120;
+BEGIN;
+After the last query.  Put the following command 
+ROLLBACK;
+Doing this will allow you to run your file multiple times without negatively affecting the 
+database.
+1 – Add a new employee  
+Name = ‘Farquar’  WorkPhone = 9876  HomePhone 3333
+ EmployeeID 'X476543'
+Do not set the id yourself.  Let the system do that for you.
+This should consist of two insert commands.  You may use the returned ID from the first command in the 
+second command.
+Query:
+SELECT employeenumber, employee.name  , phoneType.name, 
+PhoneInfo.Number 
+FROM Employee
+    JOIN PhoneInfo  ON ( employee.id = phoneInfo.employeeid)
+    JOIN PhoneType ON ( phoneType.id = phoneInfo.type)
+WHERE employee.name ILIKE 'F%';
+2 – Add two new employees in a single statement
+Name = ‘Amy’  EmployeeNumber = ‘X412345'
+Name = ‘Bert’  EmployeeNumber = 'X412346'
+Query:
+SELECT employeenumber, employee.name  
+FROM Employee
+WHERE Employeenumber like 'X4%'
+ORDER BY employeenumber;
+3 – Add phone numbers for Amy
+Pager ( P)  ‘345-3456’
+Business (B) ‘123-4567
+Do NOT use employee.ID in any of your commands. 
+Query:
+SELECT employeenumber, employee.name  , phoneType.name as PhoneType, 
+PhoneInfo.Number 
+FROM Employee
+    JOIN PhoneInfo  ON ( Employee.id = phoneInfo.employeeid)
+    JOIN PhoneType ON ( phoneType.id = phoneInfo.type)
+WHERE employee.employeenumber  LIKE 'X4%'
+ORDER BY employeenumber, phoneType;
+4-Change Amy’s name ( EmployeeNumber  X412345) to ‘Ardvark’
+Do NOT use employee.ID in any of your commands. 
+Query:
+SELECT employeenumber, employee.name  
+FROM Employee
+WHERE Employeenumber like 'X4%'
+order by employeenumber;
+5 – Delete the employee with employeNumber = ‘X412346';
+Query:
+SELECT employeenumber, name
+FROM Employee
+WHERE EmployeeNumber  LIKE 'X4%'
+ORDER BY NAME;
+6 – Delete Employee ‘X412345’ from the database
+This will take two commands.  One to delete the phoneInfo, one to delete the employee record
+Query:
+SELECT employeenumber, name
+FROM Employee
+WHERE EmployeeNumber  LIKE 'X4%'
+ORDER BY NAME;
+7 – Add two new employees
+Name = ‘New1’  EmployeeID = ‘X498765'
+Name = ‘New2  EmployeeID = 'X498989’'
+Add both in a single command;
+Query:
+SELECT employeenumber, name 
+FROM Employee
+WHERE name ilike 'New%'
+ORDER BY EmployeeNumber;
+8 – Give New1 and New2 a phone  number
+Business (B) 123-4567 for both employees.
+Do this in a single command
+Query:
+SELECT employeenumber, employee.name  , phoneType.name, 
+PhoneInfo.Number 
+FROM Employee
+    JOIN PhoneInfo  ON ( Employee.id = phoneInfo.employeeid)
+    JOIN PhoneType ON ( phoneType.id = phoneInfo.type)
+WHERE employee.employeeNumber like 'X4%'
+ORDER BY employee.employeeNumber;
+9 – Create a new meeting
+Purpose = ‘New Employee Orientation’
+RoomNumber  104
+Building ‘A’
+StartTime ‘2019-04-05 at 3:00 PM’
+Duration  one hour
+Created by ‘Sarah’ ( ‘X311234’)
+Moderated by ‘Ariel ( ‘X311239’)
+Do this in a single command
+Query:
+SELECT room.roomNumber, building, startTime, duration, purpose, 
+employee.name as creator
+FROM Meeting
+    JOIN room ON ( room.id = meeting.roomid)
+    JOIN employee ON ( employee.id = meeting.creatorid)
+ORDER BY starttime ;
+10 – Add Employees to the new meeting you just created 
+EmployeeIDs 'X476543', 'X498765', 'X498989'
+There is only one Meeting that has a purpose of ‘New %’ Use that to find the correct meeting.
+Do this in one command.
+Query:
+SELECT name, employeenumber 
+FROM Employee
+    JOIN Attendees ON Employee.id = Attendees.employeeid
+    JOIN Meeting  ON Meeting.id = Attendees.meetingid
+WHERE Meeting.purpose like 'New%'
+ORDER BY NAME;
+11 – Move the time of all staff meetings 30 minutes into the future
+Query:
+SELECT * 
+FROM Meeting
+WHERE purpose = 'Staff'
+ORDER BY starttime, roomid;
+12 – Remove Farquar from all meetings
+Query:
+SELECT name, employeenumber 
+FROM Employee
+    JOIN Attendees ON Employee.id = Attendees.employeeid
+    JOIN Meeting  ON Meeting.id = Attendees.meetingid
+WHERE Meeting.purpose like 'New%'
+ORDER BY NAME;
+13 – Change the moderator for the ‘New Employee %’ meeting to Albert ( ‘X311248’)
+Query:
+SELECT purpose, Employee.name as Moderator
+FROM Meeting
+    JOIN Employee ON employee.id = meeting.moderatorid
+WHERE meeting.purpose like 'New%';
+14 – For every meeting that Albert ( ‘X311248’) is moderator, change to Max ( ‘X311237’)
+Query:
+SELECT meeting.purpose, employee.name, employee.employeenumber
+FROM meeting
+    JOIN employee ON  meeting.moderatorid = employee.id
+WHERE employee.employeenumber IN ( 'X311248', 'X311237')
+ORDER BY  meeting.starttime;
+Expected Output:
+ALTER SEQUENCE
+ALTER SEQUENCE
+BEGIN
+#1 Add a new employee. Name = Farquar WorkPhone = 9876
+HomePhone = 3333 EmployeeNumberX476543
+Do not set the ID - let the system do that for you
+Code Check.
+ id 
+----
+ 20
+(1 row)
+INSERT 0 1
+INSERT 0 2
+**************************************************************
+ employeenumber |  name   | name |  number  
+----------------+---------+------+----------
+ X476543        | Farquar | Home | 456-3333
+ X476543        | Farquar | Work | 123-9876
+(2 rows)
+#2 Add two new employees in a single statement.
+Name = Amy EmployeeNumber X412345
+Name = Bert EmployeeNumber X412346
+INSERT 0 2
+**************************************************************
+ employeenumber |  name   
+----------------+---------
+ X412345        | Amy
+ X412346        | Bert
+ X476543        | Farquar
+(3 rows)
+#3 Add phone numbers for Amy. Do NOT use Employee.ID in your command
+Amy Pager ( P) 345-3456 Business ( B) 123-4567
+INSERT 0 2
+**************************************************************
+ employeenumber |  name   | phonetype |  number  
+----------------+---------+-----------+----------
+ X412345        | Amy     | Business  | 123-4567
+ X412345        | Amy     | Pager     | 345-3456
+ X476543        | Farquar | Home      | 456-3333
+ X476543        | Farquar | Work      | 123-9876
+(4 rows)
+#4 Change Amys name to Ardvark Again do not use the surrogate key.
+Do not assume there is only one Amy in the DB
+UPDATE 1
+**************************************************************
+ employeenumber |  name   
+----------------+---------
+ X412345        | Ardvark
+ X412346        | Bert
+ X476543        | Farquar
+(3 rows)
+#5 Delete the employee with employee number = X412346;
+DELETE 1
+**************************************************************
+ employeenumber |  name   
+----------------+---------
+ X412345        | Ardvark
+ X476543        | Farquar
+(2 rows)
+#6 Delete employee X412345 from the database. This will take two commands.
+Do not use a surrogate key.
+DELETE 2
+DELETE 1
+**************************************************************
+ employeenumber |  name   
+----------------+---------
+ X476543        | Farquar
+(1 row)
+#7 Add two new employees "New1" and "New2"
+with employeeNumber "X434567" and " X434568" respectively
+INSERT 0 2
+**************************************************************
+ employeenumber | name 
+----------------+------
+ X498765        | New1
+ X498989        | New2
+(2 rows)
+#8 Using the name field. give New1 and New2
+A business number ( 123-4567) Same number to both employees
+Do this in a single command
+INSERT 0 2
+**************************************************************
+ employeenumber |  name   |   name   |  number  
+----------------+---------+----------+----------
+ X476543        | Farquar | Work     | 123-9876
+ X476543        | Farquar | Home     | 456-3333
+ X498765        | New1    | Business | 123-4567
+ X498989        | New2    | Business | 123-4567
+(4 rows)
+#9 Create a meeting ( New Employee Orientation ) with room A-104
+on 2019-04-05 at 3:00 PM for One hour.
+Created by Sarah ( X311234) Moderated by Ariel (X311239)
+INSERT 0 1
+**************************************************************
+ roomnumber | building |      starttime      | duration |         purpose          | creator 
+------------+----------+---------------------+----------+--------------------------+---------
+ 103        | A        | 2018-03-04 09:30:00 | 01:00:00 | Staff                    | Winston
+ 101        | A        | 2018-03-04 09:30:00 | 01:00:00 | Staff                    | Alice
+ 102        | A        | 2018-03-07 09:30:00 | 01:00:00 | Team Build               | Alice
+ 202        | B        | 2018-03-07 11:30:00 | 01:30:00 | HR Presentation          | Jack
+ 201        | B        | 2018-03-09 09:30:00 | 01:00:00 | DB Issues                | Ariel
+ 101        | A        | 2018-03-11 09:30:00 | 01:00:00 | Staff                    | Alice
+ 201        | B        | 2018-03-15 09:30:00 | 01:00:00 | Post Mortem              | Dan
+ 104        | A        | 2018-03-17 11:00:00 | 01:30:00 | Sales                    | Winston
+ 103        | A        | 2018-03-18 09:30:00 | 01:00:00 | Staff                    | Winston
+ 101        | A        | 2018-03-18 09:30:00 | 01:00:00 | Staff                    | Alice
+ 101        | B        | 2018-03-21 12:00:00 | 01:00:00 | Lunch                    | Alice
+ 101        | A        | 2018-03-25 09:30:00 | 01:00:00 | Staff                    | Alice
+ 101        | B        | 2018-03-28 12:00:00 | 01:00:00 | PlanningLunch            | Winston
+ 101        | B        | 2018-03-28 12:00:00 | 01:00:00 | Lunch                    | Alice
+ 101        | B        | 2018-04-05 12:00:00 | 01:00:00 | Lunch                    | Alice
+ 104        | A        | 2018-04-17 11:00:00 | 01:30:00 | Sales                    | Winston
+ 104        | A        | 2018-05-15 09:30:00 | 01:00:00 | Post Mortem              | Dan
+ 104        | A        | 2018-05-17 11:00:00 | 01:30:00 | Sales                    | Winston
+ 104        | A        | 2019-04-05 15:00:00 | 01:00:00 | New Employee Orientation | Sarah
+(19 rows)
+#10 Add X476543, X498765, X498989 - to the "New Employee" meeting.
+Do not use the PK of the meeting ( use the name)
+INSERT 0 3
+**************************************************************
+  name   | employeenumber 
+---------+----------------
+ Farquar | X476543
+ New1    | X498765
+ New2    | X498989
+(3 rows)
+#11 Move the time of all staff meetings 30 minutes into the future
+with a single command
+UPDATE 6
+**************************************************************
+ id  | roomid |      starttime      | duration | purpose | creatorid | moderatorid 
+-----+--------+---------------------+----------+---------+-----------+-------------
+ 101 |    201 | 2018-03-04 10:00:00 | 01:00:00 | Staff   |        14 |          14
+ 105 |    203 | 2018-03-04 10:00:00 | 01:00:00 | Staff   |         3 |           4
+ 102 |    201 | 2018-03-11 10:00:00 | 01:00:00 | Staff   |        14 |          14
+ 103 |    201 | 2018-03-18 10:00:00 | 01:00:00 | Staff   |        14 |          14
+ 106 |    203 | 2018-03-18 10:00:00 | 01:00:00 | Staff   |         3 |           4
+ 104 |    201 | 2018-03-25 10:00:00 | 01:00:00 | Staff   |        14 |          14
+(6 rows)
+#12 Delete Forquar from all meetings.
+DELETE 1
+**************************************************************
+ name | employeenumber 
+------+----------------
+ New1 | X498765
+ New2 | X498989
+(2 rows)
+#13 Change the moderator for the New Employee meeting to Albert ( X311248)
+UPDATE 1
+**************************************************************
+         purpose          | moderator 
+--------------------------+-----------
+ New Employee Orientation | Albert
+(1 row)
+#14 Wherever X311248 ( Albert) is moderator of a meeting,
+Change to X311237 ( max)
+UPDATE 4
+         purpose          | name | employeenumber 
+--------------------------+------+----------------
+ Staff                    | Max  | X311237
+ Team Build               | Max  | X311237
+ Post Mortem              | Max  | X311237
+ Sales                    | Max  | X311237
+ Staff                    | Max  | X311237
+ PlanningLunch            | Max  | X311237
+ Sales                    | Max  | X311237
+ Post Mortem              | Max  | X311237
+ Sales                    | Max  | X311237
+ New Employee Orientation | Max  | X311237
+(10 rows)
+ROLLBACK
