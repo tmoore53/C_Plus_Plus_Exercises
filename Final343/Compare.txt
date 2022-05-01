@@ -1,6 +1,6 @@
 
 Page
-1
+13
 of 13
 Lecture 05– Homework04  Using database db03
 5 points 1 thru 6
@@ -322,3 +322,4 @@ UPDATE 4
  New Employee Orientation | Max  | X311237
 (10 rows)
 ROLLBACK
+
