@@ -1,0 +1,24 @@
+
+0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabc
+mem1 = 20001000
+mem2 = 20001400
+mem3 = 20003000
+mem4 = 20002000
+mem5 = 20001800
+mem6 = 20001c00
+mem7 = 20001a00
+_rfree: mcb[200068c0] = 401
+_rfree: mcb[20006880] = 201
+_rfree: mcb[20006800] = 401
+_rfree: mcb[200068a0] = 201
+_rfree: mcb[20006880] = 400
+_rfree: mcb[20006880] = 800
+_rfree: mcb[20006840] = 401
+_rfree: mcb[20006800] = 800
+_rfree: mcb[20006800] = 1000
+mem8 = 20001000
+_rfree: mcb[20006900] = 1001
+_rfree: mcb[20006a00] = 2001
+_rfree: mcb[20006800] = 1001
+_rfree: mcb[20006800] = 2000
+_rfree: mcb[20006800] = 4000

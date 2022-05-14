@@ -14,10 +14,12 @@
 
 extern void *_malloc( int size );  // you need to implement it in heap.c
 extern void *_free( void *ptr );   // you need to implement it in heap.c
+extern void printArray( );
 
 int main( ) {
   char stringA[40] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabc\0";
   char stringB[40];
+  
   
   bzero( stringB, 40 );
   strncpy( stringB, stringA, 40 );
@@ -46,6 +48,7 @@ int main( ) {
   void* mem7 = _malloc( 512 );
   printf( "mem7 = %x\n", mem7 );
 
+  //printArray();
   _free( mem6 );
   _free( mem5 );
   _free( mem1 );
